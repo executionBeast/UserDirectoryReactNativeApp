@@ -49,14 +49,15 @@ const styles = StyleSheet.create({
     textName:{
         fontSize:18,
         fontWeight: '900',
-        color: 'black'
+        color: 'black',
     },
     textEmail: {
         fontSize:15,
         fontWeight: '400',
+        color: 'black'
+
     },
     profile: {
-        flex : 1/6,
         height: 70,
         width: 70,
         borderRadius: 100,

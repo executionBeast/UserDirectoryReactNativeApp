@@ -7,7 +7,7 @@ import {
   View,
   FlatList
 } from 'react-native';
-import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
+import { SafeAreaView} from 'react-native-safe-area-context';
 import axios from 'axios';
 
 import UserList from '../components/UserList';
@@ -54,36 +54,31 @@ function UserSearch(): JSX.Element {
         
         <View style={styles.searchContainer}>
             <TextInput
-            style={styles.searchInput}
-            value={searchQuery}
-            onChangeText={text => setSearchQuery(text)}
-            placeholder="Search"
+              style={styles.searchInput}
+              value={searchQuery}
+              onChangeText={text => setSearchQuery(text)}
+              placeholder="Search"
+              placeholderTextColor='#21212199'
             />
         </View>
         <Text style={{fontSize:20,color:'black'}}>{searchQuery}</Text>
 
         {!isApiError === true ? (
-        <ScrollView style={styles.userListContainer} >
-          {filteredUserData.map((user,index)=>{
-            if(user){
-                return (
-                    <UserList key={index} user={user}/>
-                )
-            }
-            return (
-                <Text style={{fontSize:20}}>No User Found</Text>
-            )
-            
-          })}
-        </ScrollView>  
+          
+          <FlatList style={styles.userListContainer}
+          data={filteredUserData}
+          renderItem={({item})=> <UserList user={item}/>}
+        />
+        
         ):(
           <View style={styles.errorContainer}>
             <Text style={styles.errorText}>Error Fetching User Data</Text>
-            <Text style={{fontSize:20}}>Check Internet Connection</Text>
+            <Text style={[styles.errorText,{color:'black'}]}>Check Internet Connection</Text>
 
           </View>
         )}
          
+      
 
         </SafeAreaView>
 
@@ -103,18 +98,21 @@ const styles = StyleSheet.create({
     padding:8,
     flex: 1/20,
     flexDirection: 'row',
-    alignItems: 'center',
     marginBottom: 8,
+    color:'black',
+    // backgroundColor:'black',
   },
   searchInput: {
-    height: 50,
+    height: 65,
     width: '100%',
     borderWidth: 1,
-    borderColor: '#ccc', // Add border color
-    color: '#000',
-    backgroundColor: '#f8f8f8', // Light background
+    borderColor: '#ccc',
+    color:'black',
+    fontSize:20,
+    backgroundColor: '#f8f8f8',
+    // backgroundColor:'red',
     borderRadius: 10,
-    paddingHorizontal: 10,
+    paddingHorizontal: 20,
   },
   searchButton: {
     width: '10%',
@@ -137,8 +135,8 @@ const styles = StyleSheet.create({
     justifyContent:'center',
   },
   errorText: {
-    fontSize: 20,
-    color:'black',
+    fontSize: 30,
+    color:'red',
     fontWeight:'800',
   }
 });
