@@ -1,21 +1,29 @@
-import {View, Text,Image, StyleSheet} from 'react-native';
+import {View, Text,Image, StyleSheet, TouchableOpacity} from 'react-native';
 import React from 'react';
-import pic from '../../assets/profile.png';
+// import pic from '../../assets/profile.png';
 import { PropsWithChildren } from 'react';
+
+//navigation
+import { useNavigation } from '@react-navigation/native';
 
 type UserProps = PropsWithChildren<{
   user: {
+    id: number;
     name: string;
     email: string;  
   }
 }>;
 
 const UserList: React.FC<UserProps> = ({user}) => {
+  const navigation = useNavigation();
   return (
-    <View style={styles.userListContainer}>
-      <Image 
+    <TouchableOpacity style={styles.userListContainer} onPress={()=>{
+      console.log("Name",user.id)
+      navigation.navigate('UserDetails',{user: user});
+    }}>
+      <Image
         style={styles.profile} 
-        source={pic}
+        source={{uri:'https://picsum.photos/300'}}
       />
       <View style={styles.nameContainer}>
         <Text style={styles.textName}>{user.name}</Text>
@@ -23,7 +31,7 @@ const UserList: React.FC<UserProps> = ({user}) => {
 
 
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 

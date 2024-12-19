@@ -22,7 +22,7 @@ import UserDetails from './src/screens/UserDetails';
 function App(): JSX.Element {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator initialRouteName="UserSearch">
         <Stack.Screen name="UserSearch" component={UserSearch} />
         <Stack.Screen name="UserDetails" component={UserDetails} />
       </Stack.Navigator>
