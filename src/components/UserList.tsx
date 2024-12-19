@@ -19,7 +19,7 @@ const UserList: React.FC<UserProps> = ({user}) => {
   return (
     <TouchableOpacity style={styles.userListContainer} onPress={()=>{
       console.log("Name",user.id)
-      navigation.navigate('UserDetails',{user: user});
+      navigation.navigate('UserProfile',{user: user});
     }}>
       <Image
         style={styles.profile} 

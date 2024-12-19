@@ -9,7 +9,7 @@ const UserDetails = ({route}) => {
   return (
     <SafeAreaView style={styles.screenContainer}>
       <View style={styles.banner}>
-        <Image style={styles.bannerImage} source={{uri:'https://picsum.photos/280'}}/>
+        <Image style={styles.bannerImage} source={bannerImage}/>
       </View>
 
       <View style={styles.profilePicContainer}>
